@@ -14,8 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('profiles_api.urls'))
 ]
+
+"""
+Logic:
+    when you pass in the web server, forward /api, it takes you to the profiles_api.urls,
+    it will match '/hello-view', it will then call the HelloapiView, which is the standard
+    function that we call to convert our api view class to be rendered by the urls, so
+    basically Django rest framework will call this get function if a HTTP GET request is made
+    to our URL  
+"""
